@@ -19,6 +19,14 @@ void output(char c) {
     std::cout << c;
 }
 
+// output text
+// @concerns output format, std::string, iteration
+void outputText(const std::string& s) {
+
+    for (auto pc = s.cbegin(); pc != s.cend(); ++pc)
+        output(*pc);
+}
+
 int main(int argc, char* argv[]) {
 
     // requires conversion option and string
@@ -57,9 +65,8 @@ int main(int argc, char* argv[]) {
     }
 
     // output converted text
-    // @concerns output format, text, iteration, output
-    for (auto pc = text.cbegin(); pc != text.cend(); ++pc)
-        output(*pc);
+    // @concerns text, outputText()
+    outputText(text);
     std::cout << '\n';
 
     return 0;
