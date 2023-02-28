@@ -37,6 +37,14 @@ void myforeach(std::string::iterator begin, std::string::iterator end, Conversio
         convert(*pc);
 }
 
+void upper(char& c) {
+    c = std::toupper(c);
+}
+
+void lower(char& c) {
+    c = std::tolower(c);
+}
+
 int main(int argc, char* argv[]) {
 
     // requires conversion option and string
@@ -60,13 +68,11 @@ int main(int argc, char* argv[]) {
     // @concerns error handling, std::cerr
     if (option == "--upper") {
 
-        for (auto pc = text.begin(); pc != text.end(); ++pc)
-            *pc = std::toupper(*pc);
+        myforeach(text.begin(), text.end(), upper);
 
     } else if (option == "--lower") {
 
-        for (auto pc = text.begin(); pc != text.end(); ++pc)
-            *pc = std::tolower(*pc);
+        myforeach(text.begin(), text.end(), lower);
 
     } else {
 
