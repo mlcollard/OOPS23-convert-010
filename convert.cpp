@@ -27,6 +27,16 @@ void outputText(const std::string& s) {
         output(*pc);
 }
 
+typedef void (*Conversion)(char& c);
+
+// apply the function convert to each element in the range [begin, end)
+// @concerns std::string, iteration, convert(), myforeach[out]
+void myforeach(std::string::iterator begin, std::string::iterator end, Conversion convert) {
+
+    for (auto pc = begin; pc != end; ++pc)
+        convert(*pc);
+}
+
 int main(int argc, char* argv[]) {
 
     // requires conversion option and string
