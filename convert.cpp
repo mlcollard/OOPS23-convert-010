@@ -13,6 +13,12 @@
 #include <string>
 #include <cctype>
 
+// output character
+// @concerns output format, std::cout, output[out]
+void output(char c) {
+    std::cout << c;
+}
+
 int main(int argc, char* argv[]) {
 
     // requires conversion option and string
@@ -51,9 +57,9 @@ int main(int argc, char* argv[]) {
     }
 
     // output converted text
-    // @concerns output format, text, iteration, std::cout
+    // @concerns output format, text, iteration, output
     for (auto pc = text.cbegin(); pc != text.cend(); ++pc)
-        std::cout << *pc;
+        output(*pc);
     std::cout << '\n';
 
     return 0;
