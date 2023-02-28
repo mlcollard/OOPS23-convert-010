@@ -16,24 +16,24 @@
 int main(int argc, char* argv[]) {
 
     // requires conversion option and string
-    // @concerns
+    // @concerns input format, argc, argv, error handling, std::cerr
     if (argc != 3) {
         std::cerr << "usage: " << argv[0] << " <option> <string>\n";
         return 1;
     }
 
     // conversion option
-    // @concerns
+    // @concerns input format, argv, std::string, option[out]
     std::string option(argv[1]);
 
     // input text
-    // @concerns
+    // @concerns input format, argv, std::string, text[out]
     std::string text(argv[2]);
 
     // convert the string according to the option
-    // @concerns
-    // @concerns
-    // @concerns
+    // @concerns option, text, "--upper", "--lower"
+    // @concerns std::string, std::toupper, std::tolower, iteration
+    // @concerns error handling, std::cerr
     if (option == "--upper") {
 
         for (auto pc = text.begin(); pc != text.end(); ++pc)
@@ -51,7 +51,7 @@ int main(int argc, char* argv[]) {
     }
 
     // output converted text
-    // @concerns
+    // @concerns output format, text, iteration, std::cout
     for (auto pc = text.cbegin(); pc != text.cend(); ++pc)
         std::cout << *pc;
     std::cout << '\n';
