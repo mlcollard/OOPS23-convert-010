@@ -20,7 +20,7 @@ void output(char c) {
 }
 
 // output text
-// @concerns output format, std::string, iteration
+// @concerns output format, std::string, iteration, output, outputText()
 void outputText(const std::string& s) {
 
     for (auto pc = s.cbegin(); pc != s.cend(); ++pc)
