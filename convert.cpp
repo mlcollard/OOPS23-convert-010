@@ -64,23 +64,28 @@ int main(int argc, char* argv[]) {
     // @concerns input format, argv, std::string, text[out]
     std::string text(argv[2]);
 
-    // convert the string according to the option
-    // @concerns option, text, "--upper", "--lower"
-    // @concerns std::string, upper(), lower()
+    // find the conversion to use
+    // @concerns option, "--upper", "--lower", conversion[out]
+    // @concerns upper(), lower()
     // @concerns error handling, std::cerr
+    Conversion conversion = nullptr;
     if (option == "--upper") {
 
-        myforeach(text.begin(), text.end(), upper);
+        conversion = upper;
 
     } else if (option == "--lower") {
 
-        myforeach(text.begin(), text.end(), lower);
+        conversion = lower;
 
     } else {
 
         std::cerr << "Invalid conversion option: " << option << '\n';
         return 1;
     }
+
+    // convert the string
+    // @concerns text, myforeach, std::string, conversion
+    myforeach(text.begin(), text.end(), conversion);
 
     // output converted text
     // @concerns text, outputText()
