@@ -37,10 +37,12 @@ void myforeach(std::string::iterator begin, std::string::iterator end, Conversio
         convert(*pc);
 }
 
+// @concerns std::toupper, upper[out]
 void upper(char& c) {
     c = std::toupper(c);
 }
 
+// @concerns std::tolower, lower[out]
 void lower(char& c) {
     c = std::tolower(c);
 }
@@ -64,7 +66,7 @@ int main(int argc, char* argv[]) {
 
     // convert the string according to the option
     // @concerns option, text, "--upper", "--lower"
-    // @concerns std::string, std::toupper, std::tolower, iteration
+    // @concerns std::string, upper(), lower()
     // @concerns error handling, std::cerr
     if (option == "--upper") {
 
