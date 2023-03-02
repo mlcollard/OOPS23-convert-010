@@ -23,21 +23,11 @@ void output(char c) {
 
 typedef void (*Conversion)(char& c);
 
-// @concerns std::toupper, upper[out]
-void upper(char& c) {
-    c = std::toupper(c);
-}
-
-// @concerns std::tolower, lower[out]
-void lower(char& c) {
-    c = std::tolower(c);
-}
-
 // option to conversion mapping
-// @concerns "--upper", "--lower", upper, lower, unordered_map
+// @concerns "--upper", "--lower", unordered_map
 const std::unordered_map<std::string, Conversion> conversionOption{
-    { "--upper", upper },
-    { "--lower", lower },
+    { "--upper", [](char& c) { c = std::toupper(c); } },
+    { "--lower", [](char& c) { c = std::tolower(c); } },
 };
 
 int main(int argc, char* argv[]) {
@@ -58,8 +48,7 @@ int main(int argc, char* argv[]) {
     std::string text(argv[2]);
 
     // find the conversion to use
-    // @concerns option, "--upper", "--lower", conversion[out]
-    // @concerns upper(), lower()
+    // @concerns option, conversion[out]
     // @concerns error handling, std::cerr
     auto conversionEntry = conversionOption.find(option);
     if (conversionEntry == conversionOption.end()) {
