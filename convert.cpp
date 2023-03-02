@@ -12,6 +12,7 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+#include <algorithm>
 
 // output character
 // @concerns output format, std::cout, output[out]
@@ -28,14 +29,6 @@ void outputText(const std::string& s) {
 }
 
 typedef void (*Conversion)(char& c);
-
-// apply the function convert to each element in the range [begin, end)
-// @concerns std::string, iteration, convert(), myforeach[out]
-void myforeach(std::string::iterator begin, std::string::iterator end, Conversion convert) {
-
-    for (auto pc = begin; pc != end; ++pc)
-        convert(*pc);
-}
 
 // @concerns std::toupper, upper[out]
 void upper(char& c) {
@@ -84,8 +77,8 @@ int main(int argc, char* argv[]) {
     }
 
     // convert the string
-    // @concerns text, myforeach, std::string, conversion
-    myforeach(text.begin(), text.end(), conversion);
+    // @concerns text, std::for_each, std::string, conversion
+    std::for_each(text.begin(), text.end(), conversion);
 
     // output converted text
     // @concerns text, outputText()
