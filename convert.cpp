@@ -20,14 +20,6 @@ void output(char c) {
     std::cout << c;
 }
 
-// output text
-// @concerns output format, std::string, iteration, output, outputText()
-void outputText(const std::string& s) {
-
-    for (auto pc = s.cbegin(); pc != s.cend(); ++pc)
-        output(*pc);
-}
-
 typedef void (*Conversion)(char& c);
 
 // @concerns std::toupper, upper[out]
@@ -81,8 +73,8 @@ int main(int argc, char* argv[]) {
     std::for_each(text.begin(), text.end(), conversion);
 
     // output converted text
-    // @concerns text, outputText()
-    outputText(text);
+    // @concerns text, output(), std::for_each
+    std::for_each(text.begin(), text.end(), output);
     std::cout << '\n';
 
     return 0;
